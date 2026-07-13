@@ -100,7 +100,7 @@ if any([show_histogram, show_scatter, show_type_bar, show_condition_box]):
         ativos.append(fig_box)
         
     # Distribui os gráficos selecionados de 2 em 2 colunas de forma organizada
-    for i in range(0, len(ativos), i+2):
+    for i in range(0, len(ativos), 2):
         cols = st.columns(2)
         if i < len(ativos):
             cols[0].plotly_chart(ativos[i], use_container_width=True)
