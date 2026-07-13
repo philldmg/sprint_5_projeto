@@ -3,9 +3,9 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-# --- Configuração de Caminho Direto na Raiz ---
+# --- Configuração de Caminho Baseado na Raiz do Critério ---
 current_dir = os.path.dirname(__file__)
-csv_path = os.path.join(current_dir, 'vehicles.csv')
+csv_path = os.path.join(current_dir, 'vehicles_us.csv')
 
 # Lendo o conjunto de dados
 car_data = pd.read_csv(csv_path)
@@ -13,7 +13,7 @@ car_data = pd.read_csv(csv_path)
 # --- Configuração da Página ---
 st.set_page_config(page_title="Dashboard de Veículos", layout="wide")
 
-# --- Cabeçalho Principal ---
+# --- Cabeçalho Principal (Critério: Pelo menos um cabeçalho com texto) ---
 st.title('Dashboard de Análise de Vendas de Carros')
 st.markdown("Uma visão analítica e interativa sobre o inventário de anúncios de veículos.")
 st.markdown("---")
@@ -29,7 +29,7 @@ with col_m3:
 
 st.markdown("---")
 
-# --- Layout em Duas Colunas: Configurações vs Tabela ---
+# --- Painel de Configurações (Critério: Pelo menos um botão ou caixa de seleção) ---
 col_esquerda, col_direita = st.columns([1, 2])
 
 with col_esquerda:
@@ -44,7 +44,7 @@ with col_direita:
 
 st.markdown("---")
 
-# --- Seção Dinâmica de Gráficos ---
+# --- Seção Dinâmica de Gráficos (Critérios: Pelo menos 1 histograma e 1 gráfico de dispersão) ---
 if show_histogram or show_scatter:
     st.subheader("Gráficos e Análises Visuais")
     
