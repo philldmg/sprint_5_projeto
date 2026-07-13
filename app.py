@@ -76,10 +76,7 @@ st.markdown("---")
 # --- Renderização Dinâmica dos Gráficos ---
 st.subheader("Gráficos e Insights Visuais")
 
-# Layout em grid de duas colunas para otimizar espaço se múltiplos gráficos estiverem ativos
 if any([show_histogram, show_scatter, show_type_bar, show_condition_box]):
-    
-    # Criar uma lista de gráficos ativos para organizar na tela
     ativos = []
     
     if show_histogram:
@@ -99,13 +96,13 @@ if any([show_histogram, show_scatter, show_type_bar, show_condition_box]):
         fig_box = px.box(car_data, x='condition', y='price', color='fuel', title='Distribuição de Preço por Condição e Combustível', category_orders={"condition": ["new", "like new", "excellent", "good", "fair", "salvage"]})
         ativos.append(fig_box)
         
-    # Distribui os gráficos selecionados de 2 em 2 colunas de forma organizada
+    # Grid Avançado e Seguro (Evita estouro de índice)
     for i in range(0, len(ativos), 2):
         cols = st.columns(2)
-        if i < len(ativos):
-            cols[0].plotly_chart(ativos[i], use_container_width=True)
+        with cols[0]:
+            st.plotly_chart(ativos[i], use_container_width=True)
         if i + 1 < len(ativos):
-            cols[1].plotly_chart(ativos[i+1], use_container_width=True)
-            
+            with cols[1]:
+                st.plotly_chart(ativos[i+1], use_container_width=True)
 else:
     st.warning("Selecione pelo menos uma configuração de visualização no menu à esquerda para renderizar os gráficos.")
